@@ -198,7 +198,7 @@ const Payment = () => {
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg max-w-md mx-auto">
             <h3 className="text-xl font-semibold">Confirm Payment</h3>
-            <p className="mt-2">Are you sure you want to pay for DugsiTech using the phone number: {formData.phoneNumber}?</p>
+            <p className="mt-2">Are you sure you want to pay for<span className='text-pink-600 font-semibold'> Dugsi Hub</span> using the phone number: {formData.phoneNumber}?</p>
             <div className="mt-4 flex justify-between">
               <button
                 onClick={() => handleConfirmation(false)}

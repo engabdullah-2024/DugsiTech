@@ -4,7 +4,7 @@ import { FaFilePdf, FaRegGrinBeam, FaStar } from 'react-icons/fa'; // Using Reac
 const OurServices = () => {
   return (
     <div className=" py-12">
-      <div className="container mx-auto text-center text-white">
+      <div className="container mx-auto text-center  text-pink-600 ">
         <h2 className="text-3xl font-bold mb-8">Our Services</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

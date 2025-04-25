@@ -15,7 +15,7 @@ const Header = () => {
       <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
         {/* Logo Section */}
        <Link to='/'> <h1 className="text-2xl font-bold text-pink-600">
-          Dugsi <span className="text-gray-800">Tech</span>
+          Dugsi <span className="text-gray-800">Hub</span>
         </h1></Link>
 
         {/* Desktop Navigation */}

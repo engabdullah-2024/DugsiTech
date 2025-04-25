@@ -5,13 +5,13 @@ const testimonials = [
     name: 'Zahra A.',
     role: 'Student',
     feedback:
-      'Dugsi Tech made it so easy to access all my Grade 12 exam papers. I love the simple and beautiful design!',
+      'DugsiHub  made it so easy to access all my Grade 12 exam papers. I love the simple and beautiful design!',
   },
   {
     name: 'Ahmed M.',
     role: 'Teacher',
     feedback:
-      'Thanks to Dugsi Tech, I didn’t have to stress about finding my subjects. Everything is organized and super fast!',
+      'Thanks to DugsiHub , I didn’t have to stress about finding my subjects. Everything is organized and super fast!',
   },
   {
     name: 'Layla Y.',

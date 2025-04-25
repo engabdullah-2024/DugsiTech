@@ -10,7 +10,7 @@ const Hero = () => {
       <div className="flex items-center justify-center px-6 pt-20">
         <div className="max-w-4xl text-center py-16">
           <h1 className="text-5xl md:text-6xl font-extrabold text-gray-800 mb-6">
-            Welcome to <span className="text-pink-600">Dugsi Tech</span>
+            Welcome to <span className="text-pink-600">Dugsi Hub</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-700 mb-8">
           Empowering Grade 12 Students with Premium Exam Resources – Access PDFs and Study Materials Effortlessly.
@@ -23,7 +23,7 @@ const Hero = () => {
             </Link>
             <Link to="/about">
               <button className="bg-white border border-pink-600 text-pink-600 px-6 py-3 rounded-xl hover:bg-pink-50 transition duration-300">
-                About Dugsi Tech
+                About Dugsi Hub
               </button>
             </Link>
           </div>

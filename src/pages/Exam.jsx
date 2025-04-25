@@ -168,7 +168,7 @@ const pdfLinks = {
     Technology: "/pdfs/Technology2023.pdf",
   },
   2024: {
-    Somali: "/pdfs/Somali.pdf",
+    Somali: "/pdfs/Somali2024.pdf",
     Islamic: "/pdfs/Islamic2024.pdf",
     Arabic: "/pdfs/Arabic2024.pdf",
     English: "/pdfs/English2024.pdf",
