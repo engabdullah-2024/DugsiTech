@@ -1,0 +1,22 @@
+import React from "react";
+import Hero from "./Hero";
+// import { useTheme } from "../components/ThemeContext ";
+import Service from "../components/Service";
+import OurServices from "../components/OurServices";
+import Plans from "./Plans";
+
+function Home() {
+  
+  return (
+    <div className="bg-gradient-to-br from-white via-pink-100 to-pink-300"
+    
+    >
+     <Hero/>
+     <Plans/>
+     <OurServices/>
+     <Service/>
+    </div>
+  );
+}
+
+export default Home;
