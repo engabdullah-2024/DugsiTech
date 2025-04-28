@@ -4,8 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Plans = () => {
   const navigate = useNavigate();
-
-  const [timeLeft, setTimeLeft] = useState(null);
+  const [timeLeft, setTimeLeft] = useState('Loading...');
 
   const plans = [
     {
@@ -40,43 +39,39 @@ const Plans = () => {
     },
   ];
 
-  // Check if free trial is active or expired and calculate time remaining
   useEffect(() => {
     const trialData = JSON.parse(localStorage.getItem('trialInfo'));
+    const end = new Date('2025-06-30T23:59:59');
+
     if (trialData) {
-      const now = new Date();
-      const end = new Date('2025-06-30T23:59:59'); // Set trial end to June 30, 2025
-      if (now > end) {
-        alert('Your 30-day trial has ended. Please upgrade to continue.');
-        localStorage.removeItem('trialInfo');
-        navigate('/plans');
-      } else {
-        // Calculate time remaining
-        const timer = setInterval(() => {
-          const now = new Date();
-          const timeRemaining = end - now;
-          if (timeRemaining <= 0) {
-            clearInterval(timer);
-            setTimeLeft('Trial expired');
-          } else {
-            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+      const timer = setInterval(() => {
+        const now = new Date();
+        const timeRemaining = end - now;
+        if (timeRemaining <= 0) {
+          clearInterval(timer);
+          setTimeLeft('Trial expired');
+          localStorage.removeItem('trialInfo');
+          alert('Your 66-day trial has ended. Please upgrade to continue.');
+          navigate('/plans');
+        } else {
+          const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-            setTimeLeft(`${days}d ${hours}h ${minutes}m ${seconds}s`);
-          }
-        }, 1000);
+          setTimeLeft(`${days}d ${hours}h ${minutes}m ${seconds}s`);
+        }
+      }, 1000);
 
-        return () => clearInterval(timer);
-      }
+      return () => clearInterval(timer);
+    } else {
+      setTimeLeft('Start your free trial!');
     }
-  }, []);
+  }, [navigate]);
 
-  // Start trial with the fixed end date of June 30, 2025
   const startTrial = () => {
     const start = new Date();
-    const end = new Date('2025-06-30T23:59:59'); // Fixed end date: June 30, 2025
+    const end = new Date('2025-06-30T23:59:59');
 
     const trialInfo = {
       startISO: start.toISOString(),
@@ -85,7 +80,7 @@ const Plans = () => {
 
     localStorage.setItem('trialInfo', JSON.stringify(trialInfo));
     alert('Your trial has started!');
-    navigate('/exams');
+    navigate('/exam');
   };
 
   const handlePaymentRedirect = (price) => {
@@ -95,18 +90,20 @@ const Plans = () => {
   return (
     <div className="py-16">
       <div className="max-w-screen-xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center text-pink-700 mb-12">Our Plans (One-Time Payment)</h2>
+        <h2 className="text-3xl font-bold text-center text-pink-700 mb-12">
+          Our Plans (One-Time Payment)
+        </h2>
 
         {/* FREE TRIAL CARD */}
         <div className="mb-12">
           <div className="bg-yellow-100 border border-yellow-400 rounded-lg p-6 text-center shadow-md">
             <h3 className="text-2xl font-semibold text-yellow-800 mb-3">🎁 66-Day Free Trial</h3>
             <p className="text-gray-700 mb-4">
-              Enjoy full access to DugsiHub  content from today up to{' '}
+              Enjoy full access to DugsiHub content from today up to{' '}
               <strong>{new Date('2025-06-30').toLocaleDateString()}</strong>.
             </p>
             <p className="text-xl font-semibold text-gray-700 mb-4">
-              {timeLeft ? `Trial ends in: ${timeLeft}` : 'Loading...'}
+              {timeLeft}
             </p>
             <button
               onClick={startTrial}
