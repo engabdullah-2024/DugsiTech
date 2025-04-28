@@ -1,59 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { FaCheckCircle } from 'react-icons/fa';
+import React from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Plans = () => {
-  const navigate = useNavigate();
   const [timeLeft, setTimeLeft] = useState('Loading...');
-
-  const plans = [
-    {
-      title: 'Basic Plan',
-      price: 0.7,
-      services: [
-        'Access to all Grade 12 National Exam PDFs',
-        'Free access to exams from 2019 to 2020',
-        'Email support for any issues',
-      ],
-    },
-    {
-      title: 'Standard Plan',
-      price: 2,
-      services: [
-        'Access to all Grade 12 National Exam PDFs',
-        'Free access to exams from 2019 to 2022',
-        'Priority email support',
-        'Access to bonus study materials',
-      ],
-    },
-    {
-      title: 'Premium Plan',
-      price: 5,
-      services: [
-        'Access to all Grade 12 National Exam PDFs',
-        'Free access to exams from 2019 to 2024',
-        '24/7 email and phone support',
-        'Exclusive study materials',
-        'One-on-one tutoring session for exam preparation',
-      ],
-    },
-  ];
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {  // IMPORTANT: Only run in browser
+    if (typeof window !== 'undefined') {
       const trialData = JSON.parse(localStorage.getItem('trialInfo'));
-      const end = new Date('2025-06-30T23:59:59');
+      if (trialData && trialData.endISO) {
+        const end = new Date(trialData.endISO);
 
-      if (trialData) {
-        const timer = setInterval(() => {
+        const updateTimer = () => {
           const now = new Date();
           const timeRemaining = end - now;
 
           if (timeRemaining <= 0) {
-            clearInterval(timer);
             setTimeLeft('Trial expired');
-            localStorage.removeItem('trialInfo');
+            clearInterval(timer);
             alert('Your 66-day trial has ended. Please upgrade to continue.');
+            localStorage.removeItem('trialInfo');
             navigate('/plans');
           } else {
             const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
@@ -63,87 +30,55 @@ const Plans = () => {
 
             setTimeLeft(`${days}d ${hours}h ${minutes}m ${seconds}s`);
           }
-        }, 1000);
+        };
+
+        updateTimer(); // Call once immediately
+        const timer = setInterval(updateTimer, 1000);
 
         return () => clearInterval(timer);
       } else {
-        setTimeLeft('Start your free trial!');
+        setTimeLeft(null); // No trial started
       }
     }
   }, [navigate]);
 
-  const startTrial = () => {
-    const start = new Date();
-    const end = new Date('2025-06-30T23:59:59');
-
-    const trialInfo = {
-      startISO: start.toISOString(),
-      endISO: end.toISOString(),
-    };
-
-    localStorage.setItem('trialInfo', JSON.stringify(trialInfo));
-    alert('Your trial has started!');
-    navigate('/exams');
-  };
-
-  const handlePaymentRedirect = (price) => {
-    navigate('/payment', { state: { price } });
+  const handleStartTrial = () => {
+    if (typeof window !== 'undefined') {
+      const now = new Date();
+      const end = new Date();
+      end.setDate(now.getDate() + 66); // Add 66 days
+      const trialInfo = { startISO: now.toISOString(), endISO: end.toISOString() };
+      localStorage.setItem('trialInfo', JSON.stringify(trialInfo));
+      window.location.reload(); // Refresh to show countdown
+    }
   };
 
   return (
-    <div className="py-16">
-      <div className="max-w-screen-xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center text-pink-700 mb-12">
-          Our Plans (One-Time Payment)
-        </h2>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 text-gray-800">
+      <h1 className="text-4xl font-bold mb-6">Plans Page</h1>
 
-        {/* FREE TRIAL CARD */}
-        <div className="mb-12">
-          <div className="bg-yellow-100 border border-yellow-400 rounded-lg p-6 text-center shadow-md">
-            <h3 className="text-2xl font-semibold text-yellow-800 mb-3">🎁 66-Day Free Trial</h3>
-            <p className="text-gray-700 mb-4">
-              Enjoy full access to DugsiHub content from today up to{' '}
-              <strong>{new Date('2025-06-30').toLocaleDateString()}</strong>.
-            </p>
-            <p className="text-xl font-semibold text-gray-700 mb-4">
-              {timeLeft}
-            </p>
-            <button
-              onClick={startTrial}
-              className="bg-yellow-500 text-white py-2 px-6 rounded-md hover:bg-yellow-600 font-semibold transition duration-300"
-            >
-              Start Free Trial
-            </button>
-          </div>
-        </div>
+      {timeLeft === 'Loading...' && (
+        <p className="text-lg animate-pulse">Loading your trial...</p>
+      )}
 
-        {/* PAID PLANS */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {plans.map((plan, index) => (
-            <div
-              key={index}
-              className="bg-white shadow-lg rounded-lg p-6 text-center transform transition duration-300 hover:scale-105"
-            >
-              <h3 className="text-2xl font-semibold text-pink-600 mb-4">{plan.title}</h3>
-              <p className="text-xl text-pink-800 mb-6">One-Time Payment: ${plan.price}</p>
-              <ul className="text-left text-gray-600 mb-6">
-                {plan.services.map((service, i) => (
-                  <li key={i} className="mb-2 flex items-start">
-                    <FaCheckCircle className="w-5 h-5 text-pink-500 mr-3" />
-                    {service}
-                  </li>
-                ))}
-              </ul>
-              <button
-                onClick={() => handlePaymentRedirect(plan.price)}
-                className="bg-pink-600 text-white py-2 px-4 rounded-md font-semibold hover:bg-pink-700 transition duration-300"
-              >
-                Purchase Now
-              </button>
-            </div>
-          ))}
+      {timeLeft === null && (
+        <div className="flex flex-col items-center">
+          <p className="text-lg mb-4">You have not started your free trial yet.</p>
+          <button
+            onClick={handleStartTrial}
+            className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full"
+          >
+            Start 66-Day Free Trial
+          </button>
         </div>
-      </div>
+      )}
+
+      {timeLeft !== 'Loading...' && timeLeft !== null && (
+        <div className="flex flex-col items-center">
+          <p className="text-2xl font-semibold mb-2">Time Remaining:</p>
+          <p className="text-xl text-green-600">{timeLeft}</p>
+        </div>
+      )}
     </div>
   );
 };
