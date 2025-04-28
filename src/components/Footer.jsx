@@ -15,7 +15,7 @@ const Footer = () => {
           </div>
 
           {/* Social Media Icons */}
-          <div className="flex space-x-6 mt-6 md:mt-0">
+          <div className="flex space-x-6 mt-6 md:mt-0 justify-center md:justify-start">
             <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-200 hover:text-white transition duration-300">
               <FaFacebook size={30} />
             </a>
@@ -41,7 +41,12 @@ const Footer = () => {
               <a href="/privacy" className="text-gray-200 hover:text-white text-sm mr-6">
                 Privacy Policy
               </a>
-             < a href='/gallery' className='text-gray-200 hover:text-white text-sm mr-6'>Gallery</a>
+              <a href='/gallery' className='text-gray-200 hover:text-white text-sm mr-6'>
+                Gallery
+              </a>
+              <a href="/community" className="text-gray-200 hover:text-white text-sm mr-6">
+                Community
+              </a>
               <a href="/terms" className="text-gray-200 hover:text-white text-sm">
                 Terms & Conditions
               </a>

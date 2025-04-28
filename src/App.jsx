@@ -17,6 +17,7 @@ import OurServices from './components/OurServices';
 import Plans from './pages/Plans';
 import Payment from './pages/Payment';
 import Schools from './pages/Schools';
+import Community from './components/Community';
 
 
 const App = () => {
@@ -39,6 +40,7 @@ const App = () => {
         <Route path="/plans" element={<Plans />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/schools" element={<Schools />} />
+        <Route path="/community" element={<Community />} />
        
        
       </Routes>
