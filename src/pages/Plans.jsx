@@ -40,32 +40,35 @@ const Plans = () => {
   ];
 
   useEffect(() => {
-    const trialData = JSON.parse(localStorage.getItem('trialInfo'));
-    const end = new Date('2025-06-30T23:59:59');
+    if (typeof window !== 'undefined') {  // IMPORTANT: Only run in browser
+      const trialData = JSON.parse(localStorage.getItem('trialInfo'));
+      const end = new Date('2025-06-30T23:59:59');
 
-    if (trialData) {
-      const timer = setInterval(() => {
-        const now = new Date();
-        const timeRemaining = end - now;
-        if (timeRemaining <= 0) {
-          clearInterval(timer);
-          setTimeLeft('Trial expired');
-          localStorage.removeItem('trialInfo');
-          alert('Your 66-day trial has ended. Please upgrade to continue.');
-          navigate('/plans');
-        } else {
-          const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-          const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-          const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+      if (trialData) {
+        const timer = setInterval(() => {
+          const now = new Date();
+          const timeRemaining = end - now;
 
-          setTimeLeft(`${days}d ${hours}h ${minutes}m ${seconds}s`);
-        }
-      }, 1000);
+          if (timeRemaining <= 0) {
+            clearInterval(timer);
+            setTimeLeft('Trial expired');
+            localStorage.removeItem('trialInfo');
+            alert('Your 66-day trial has ended. Please upgrade to continue.');
+            navigate('/plans');
+          } else {
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-      return () => clearInterval(timer);
-    } else {
-      setTimeLeft('Start your free trial!');
+            setTimeLeft(`${days}d ${hours}h ${minutes}m ${seconds}s`);
+          }
+        }, 1000);
+
+        return () => clearInterval(timer);
+      } else {
+        setTimeLeft('Start your free trial!');
+      }
     }
   }, [navigate]);
 
@@ -80,7 +83,7 @@ const Plans = () => {
 
     localStorage.setItem('trialInfo', JSON.stringify(trialInfo));
     alert('Your trial has started!');
-    navigate('/exam');
+    navigate('/exams');
   };
 
   const handlePaymentRedirect = (price) => {
