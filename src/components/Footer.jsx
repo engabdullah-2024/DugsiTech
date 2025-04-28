@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaFacebook, FaTwitter, FaInstagram, FaGithub } from 'react-icons/fa'; // Social media icons
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const Footer = () => {
   return (
@@ -38,18 +39,18 @@ const Footer = () => {
               <p className="text-gray-200 text-sm">&copy; 2025 Dugsi Tech. All Rights Reserved.</p>
             </div>
             <div className="text-center mt-4 md:mt-0">
-              <a href="/privacy" className="text-gray-200 hover:text-white text-sm mr-6">
+              <Link to="/privacy" className="text-gray-200 hover:text-white text-sm mr-6">
                 Privacy Policy
-              </a>
-              <a href='/gallery' className='text-gray-200 hover:text-white text-sm mr-6'>
+              </Link>
+              <Link to='/gallery' className='text-gray-200 hover:text-white text-sm mr-6'>
                 Gallery
-              </a>
-              <a href="/community" className="text-gray-200 hover:text-white text-sm mr-6">
+              </Link>
+              <Link to="/community" className="text-gray-200 hover:text-white text-sm mr-6">
                 Community
-              </a>
-              <a href="/terms" className="text-gray-200 hover:text-white text-sm">
+              </Link>
+              <Link to="/terms" className="text-gray-200 hover:text-white text-sm">
                 Terms & Conditions
-              </a>
+              </Link>
             </div>
           </div>
         </div>
