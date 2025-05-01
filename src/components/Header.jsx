@@ -67,6 +67,9 @@ const Header = () => {
           <Link to="/contact" className="text-gray-700 hover:text-pink-600 text-xl" onClick={toggleMenu}>
             Contact
           </Link>
+          <Link to="/dashboard" className="text-gray-700 hover:text-pink-600 text-xl" onClick={toggleMenu}>
+            Dashboard
+          </Link>
         </nav>
       </div>
     </header>
