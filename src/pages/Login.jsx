@@ -1,4 +1,3 @@
-
 // src/pages/Login.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -6,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 const users = [
   { username: 'Abdullah', password: '1694', role: 'SuperAdmin' },
   { username: 'Arday', password: '123456789', role: 'Student' },
-  
 ];
 
 const Login = () => {
@@ -20,8 +18,12 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Normalize username input for case-insensitive comparison
     const user = users.find(
-      (u) => u.username === form.username && u.password === form.password
+      (u) =>
+        u.username.toLowerCase() === form.username.toLowerCase() &&
+        u.password === form.password
     );
 
     if (user) {
@@ -42,6 +44,8 @@ const Login = () => {
             type="text"
             name="username"
             placeholder="Username"
+            autoCorrect="off"
+            autoCapitalize="none"
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300"
             value={form.username}
             onChange={handleChange}
@@ -50,6 +54,8 @@ const Login = () => {
             type="password"
             name="password"
             placeholder="Password"
+            autoCorrect="off"
+            autoCapitalize="none"
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300"
             value={form.password}
             onChange={handleChange}
