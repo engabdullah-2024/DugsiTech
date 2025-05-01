@@ -1,4 +1,3 @@
-// src/pages/Login.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -19,7 +18,16 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Normalize username input for case-insensitive comparison
+    // Test localStorage availability
+    try {
+      localStorage.setItem("test", "123");
+      localStorage.removeItem("test");
+    } catch (err) {
+      setError("Your browser doesn't support localStorage.");
+      return;
+    }
+
+    // Find user (case-insensitive username)
     const user = users.find(
       (u) =>
         u.username.toLowerCase() === form.username.toLowerCase() &&
@@ -38,12 +46,13 @@ const Login = () => {
     <div className="min-h-screen bg-gradient-to-br from-white to-pink-100 flex items-center justify-center px-4">
       <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
         <h2 className="text-3xl font-bold text-center text-pink-600 mb-6">Login</h2>
-        {error && <p className="text-red-500 text-center">{error}</p>}
+        {error && <p className="text-red-500 text-center mb-2">{error}</p>}
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="text"
             name="username"
             placeholder="Username"
+            autoComplete="off"
             autoCorrect="off"
             autoCapitalize="none"
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300"
@@ -54,6 +63,7 @@ const Login = () => {
             type="password"
             name="password"
             placeholder="Password"
+            autoComplete="off"
             autoCorrect="off"
             autoCapitalize="none"
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300"
@@ -67,6 +77,11 @@ const Login = () => {
             Login
           </button>
         </form>
+
+        {/* Debug Info for Mobile Testing */}
+        <p className="text-xs text-gray-400 text-center mt-4">
+          Device Info: {navigator.userAgent}
+        </p>
       </div>
     </div>
   );
