@@ -1,9 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
-import Header from './components/Header'; // ✅ Import Header
-import Footer from './components/Footer'; // ✅ Import Footer
+import Header from './components/Header';
+import Footer from './components/Footer';
 import Exam from './pages/Exam';
 import Dev from './pages/Dev';
 import Contact from './pages/Contact';
@@ -18,33 +18,167 @@ import Plans from './pages/Plans';
 import Payment from './pages/Payment';
 import Schools from './pages/Schools';
 import Community from './components/Community';
+import Login from './pages/Login';
+import Dashboard from './components/Dashboard';
 
+// ✅ Protected Route Logic
+const ProtectedRoute = ({ children }) => {
+  const auth = localStorage.getItem('auth');
+  return auth ? children : <Navigate to="/login" />;
+};
 
 const App = () => {
+  const auth = localStorage.getItem('auth');
+
   return (
     <Router>
-      <Header /> {/* ✅ Call Header at the top */}
+      {/* Header always visible */}
+      <Header />
+
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/hero" element={<Hero />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/exam" element={<Exam />} />
-        <Route path="/dev" element={<Dev />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/privacy" element={<Privacy />} />
-        <Route path="/terms" element={<Terms />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/testimonials" element={<Testimonials />} />
-        <Route path="/service" element={<Service />} />
-        <Route path="/our" element={<OurServices />} />
-        <Route path="/plans" element={<Plans />} />
-        <Route path="/payment" element={<Payment />} />
-        <Route path="/schools" element={<Schools />} />
-        <Route path="/community" element={<Community />} />
-       
-       
+        <Route path="/login" element={<Login />} />
+
+        {/* 🔒 Protected Routes */}
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/hero"
+          element={
+            <ProtectedRoute>
+              <Hero />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <ProtectedRoute>
+              <About />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/exam"
+          element={
+            <ProtectedRoute>
+              <Exam />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dev"
+          element={
+            <ProtectedRoute>
+              <Dev />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <ProtectedRoute>
+              <Contact />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/privacy"
+          element={
+            <ProtectedRoute>
+              <Privacy />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/terms"
+          element={
+            <ProtectedRoute>
+              <Terms />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/gallery"
+          element={
+            <ProtectedRoute>
+              <Gallery />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/testimonials"
+          element={
+            <ProtectedRoute>
+              <Testimonials />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/service"
+          element={
+            <ProtectedRoute>
+              <Service />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/our"
+          element={
+            <ProtectedRoute>
+              <OurServices />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/plans"
+          element={
+            <ProtectedRoute>
+              <Plans />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/payment"
+          element={
+            <ProtectedRoute>
+              <Payment />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/schools"
+          element={
+            <ProtectedRoute>
+              <Schools />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/community"
+          element={
+            <ProtectedRoute>
+              <Community />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
-      <Footer /> {/* ✅ Call Footer at the bottom */}
+
+      {/* Footer always visible */}
+      <Footer />
     </Router>
   );
 };

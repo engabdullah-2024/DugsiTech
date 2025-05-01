@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaPhoneAlt, FaEnvelope, FaLocationArrow } from 'react-icons/fa'; // Import contact icons from react-icons
+import { FaPhoneAlt, FaEnvelope, FaLocationArrow, FaWhatsapp } from 'react-icons/fa'; // Added FaWhatsapp
 
 const Contact = () => {
   return (
@@ -19,7 +19,7 @@ const Contact = () => {
             <FaPhoneAlt size={30} className="text-pink-600" />
             <p className="text-xl font-medium text-gray-800">+252613169435</p>
           </div>
-          
+
           {/* Email */}
           <div className="flex justify-center items-center gap-4">
             <FaEnvelope size={30} className="text-pink-600" />
@@ -35,6 +35,21 @@ const Contact = () => {
             <FaLocationArrow size={30} className="text-pink-600" />
             <p className="text-xl font-medium text-gray-800">
               Ceelasha Biyaha, Somalia
+            </p>
+          </div>
+
+          {/* WhatsApp Group Link */}
+          <div className="flex justify-center items-center gap-4">
+            <FaWhatsapp size={30} className="text-green-500" />
+            <p className="text-xl font-medium text-gray-800">
+              <a
+                href="https://chat.whatsapp.com/CTS1vz8dE1XBhk9Ersw56V"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-green-600 hover:underline"
+              >
+                Our WhatsApp Group Link
+              </a>
             </p>
           </div>
         </div>
