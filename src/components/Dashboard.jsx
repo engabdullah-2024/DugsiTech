@@ -1,11 +1,31 @@
-// src/pages/Dashboard.jsx
 import React from 'react';
-import { FaUserShield, FaSchool, FaGraduationCap, FaEnvelope, FaSignOutAlt } from 'react-icons/fa';
+import { FaUserShield, FaSchool, FaGraduationCap, FaEnvelope, FaSignOutAlt, FaUsers } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const user = JSON.parse(localStorage.getItem('auth'));
   const navigate = useNavigate();
+
+  // List of users for the SuperAdmin to see
+  const users = [
+    { name: 'Abdullahi Ali', email: 'abdullah@admin.com', role: 'SuperAdmin' },
+    { name: 'Abdullahi Osman', email: 'abdullahiosman727@gmail.com', role: 'Student' },
+    { name: 'Abdi Hassan', email: 'Luqmaan@gmail.com', role: 'Student' },
+    { name: 'Ahmed Salaad Cali Mohamed', email: 'Ahmettsalaadcali321@gmail.com', password: 'password123', role: 'Student', school: 'Alfurqan School Ceelasha', grade: '12' },
+  { name: 'Balqiis Mohamed Yusuf', email: 'Balqiisamaxamed582@gmail.com', password: 'password123', role: 'Student', school: 'Alfurqan School Ceelasha', grade: '12' },
+  { name: 'Ibraahim Isxaq Cali', email: 'Ibraahimisaqcali1213@gmail.com', password: 'ibra77', role: 'Student', school: 'Alfurqan School Ceelasha', grade: '12' },
+  { name: 'Maryan Osman', email: 'Maryanosman531@gmail.com', password: 'password123', role: 'Student', school: 'Alfurqan School Ceelasha', grade: '12' },
+  { name: 'Mohamett Ali Adam', email: 'Alimaxamed733@gmail.com', password: 'password123', role: 'Student', school: 'Alfurqan School Ceelasha', grade: '12' },
+  { name: 'Muscab Mohamed Abdulahi', email: 'Muscabmohamedabdullahi99@gmail.com', password: '9988', role: 'Student', school: 'Alfurqan School Ceelasha', grade: '12' },
+  { name: 'Ruweyda Abdi Samatar', email: 'Ruweydaabdi48@gmail.com', password: 'ruwayda20', role: 'Student', school: 'Alfurqan School Ceelasha', grade: '12' },
+  { name: 'Sidik Sheik Hassan', email: 'Cumarxasann77@gmail.com', password: 'omar22', role: 'Student', school: 'Alfurqan School Ceelasha', grade: '12' },
+  { name: 'Yaxye Maxamed Cabdi', email: 'yabsheimoha@gmail.com', password: 'password123', role: 'Student', school: 'Alfurqan School Ceelasha', grade: '12' },
+  { name: 'Hamdi Nuur Apdullahi ', email: 'Hamdinuurapdullahi948@gmail.com', password: 'hamdi', role: 'Student', school: 'Alfurqan School Ceelasha', grade: '12' },
+  { name: 'Mohamed saiid ali ', email: 'mohasaiidali@1gmail.com', password: 'mosaid', role: 'Student', school: 'Alfurqan School Ceelasha', grade: '12' },
+  { name: 'Osman Abdulle Omar ', email: 'herowll649@gmail.com', password: 'osman19', role: 'Student', school: 'Alfurqan School Ceelasha', grade: '12' },
+  { name: 'Abdullahi Mahamed Axmed ', email: 'Maxamedokash1891@gmail.com', password: 'cukash1891', role: 'Student', school: 'Alfurqan School Ceelasha', grade: '12' }
+    // Other users...
+  ];
 
   const logout = () => {
     localStorage.removeItem('auth');
@@ -64,10 +84,28 @@ const Dashboard = () => {
           </div>
 
           {/* Dashboard Info Section */}
-          <div className="bg-pink-100 p-6 rounded-xl text-center shadow-md">
-            <h3 className="text-xl font-semibold">Dashboard Access</h3>
-            <p>Manage your profile and view updates here.</p>
-          </div>
+          {user?.role === 'SuperAdmin' && (
+            <div className="bg-pink-100 p-6 rounded-xl text-center shadow-md">
+              <h3 className="text-xl font-semibold">Manage Users</h3>
+              <div className="space-y-4">
+                <div className="flex items-center justify-start space-x-4">
+                  <FaUsers className="text-4xl text-pink-500" />
+                  <div className="text-left">
+                    <h3 className="text-xl font-semibold">Total Users</h3>
+                    <p>{users.length}</p>
+                  </div>
+                </div>
+                <h4 className="font-semibold">User List:</h4>
+                <ul className="list-disc pl-6">
+                  {users.map((u, index) => (
+                    <li key={index}>
+                      {u.name} ({u.email})
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
