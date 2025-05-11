@@ -9,9 +9,9 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Logo and Description */}
           <div className="text-center md:text-left">
-            <h1 className="text-3xl font-bold text-white">
+          <Link to="/">  <h1 className="text-3xl font-bold text-white">
               Dugsi <span className="text-gray-200">Hub</span>
-            </h1>
+            </h1></Link>
             <p className="text-gray-200 mt-2">Your #1 source for Grade 12 Exam PDFs – organized, easy to access, and 100% free.</p>
           </div>
 

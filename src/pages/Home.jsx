@@ -4,7 +4,7 @@ import Hero from "./Hero";
 import Service from "../components/Service";
 import OurServices from "../components/OurServices";
 
-import Schools from "./Schools";
+import ScrollButtons from "./ScrollButtons ";
 
 function Home() {
   
@@ -16,7 +16,8 @@ function Home() {
      
      <OurServices/>
      <Service/>
-     <Schools/>
+     
+     <ScrollButtons/>
     </div>
   );
 }

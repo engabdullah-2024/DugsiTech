@@ -1,11 +1,13 @@
 import React from 'react';
+import me from '../assets/me.jpeg'; // adjust the path if needed
 
 const testimonials = [
   {
-    name: 'Zahra A.',
-    role: 'Student',
+    name: 'Eng Abdullah',
+    role: 'CEO/ Founder Of DugsiHub',
     feedback:
-      'DugsiHub  made it so easy to access all my Grade 12 exam papers. I love the simple and beautiful design!',
+      'DugsiHub is a game- changer for students. Its a one-stop solution for all educational needs. I am proud to be a part of it.',
+    image: me,
   },
   {
     name: 'Ahmed M.',
@@ -34,6 +36,13 @@ const Testimonials = () => {
               key={index}
               className="bg-pink-100 shadow-md rounded-xl p-6 text-left space-y-3 transition hover:shadow-pink-300"
             >
+              {testimonial.image && (
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  className="w-16 h-16 rounded-full object-cover mb-3"
+                />
+              )}
               <p className="text-gray-700 italic">"{testimonial.feedback}"</p>
               <div className="text-right">
                 <p className="text-pink-600 font-semibold">{testimonial.name}</p>

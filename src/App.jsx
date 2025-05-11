@@ -22,6 +22,7 @@ import Login from './pages/Login';
 import Dashboard from './components/Dashboard';
 import Quiz from './pages/Quiz';
 import Answers from './pages/Answers';
+import ScrollButtons from './pages/ScrollButtons ';
 
 // ✅ Protected Route Logic
 const ProtectedRoute = ({ children }) => {
@@ -190,6 +191,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <Answers />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/arrow"
+          element={
+            <ProtectedRoute>
+              <ScrollButtons />
             </ProtectedRoute>
           }
         />
