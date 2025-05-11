@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Exam from './pages/Exam';
+// import Exam from './pages/Exam';
 import Dev from './pages/Dev';
 import Contact from './pages/Contact';
 import Privacy from './components/Privacy';
@@ -20,6 +20,8 @@ import Schools from './pages/Schools';
 import Community from './components/Community';
 import Login from './pages/Login';
 import Dashboard from './components/Dashboard';
+import Quiz from './pages/Quiz';
+import Answers from './pages/Answers';
 
 // ✅ Protected Route Logic
 const ProtectedRoute = ({ children }) => {
@@ -63,19 +65,27 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route
+        {/* <Route
           path="/exam"
           element={
             <ProtectedRoute>
               <Exam />
             </ProtectedRoute>
           }
-        />
+        /> */}
         <Route
           path="/dev"
           element={
             <ProtectedRoute>
               <Dev />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/quiz"
+          element={
+            <ProtectedRoute>
+              <Quiz />
             </ProtectedRoute>
           }
         />
@@ -172,6 +182,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/answers"
+          element={
+            <ProtectedRoute>
+              <Answers />
             </ProtectedRoute>
           }
         />

@@ -10,7 +10,7 @@ const Footer = () => {
           {/* Logo and Description */}
           <div className="text-center md:text-left">
             <h1 className="text-3xl font-bold text-white">
-              Dugsi <span className="text-gray-200">Tech</span>
+              Dugsi <span className="text-gray-200">Hub</span>
             </h1>
             <p className="text-gray-200 mt-2">Your #1 source for Grade 12 Exam PDFs – organized, easy to access, and 100% free.</p>
           </div>

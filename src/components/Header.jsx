@@ -36,6 +36,9 @@ const Header = () => {
           <Link to="/dashboard" className="text-gray-700 hover:text-pink-600 transition duration-300">
             Dashboard
           </Link>
+          <Link to="/answers" className="text-gray-700 hover:text-pink-600 transition duration-300">
+            Answers
+          </Link>
         </nav>
 
         {/* Mobile Menu Icon */}

@@ -16,9 +16,9 @@ const Hero = () => {
           Empowering Grade 12 Students with Premium Exam Resources – Access PDFs and Study Materials Effortlessly.
           </p>
           <div className="flex justify-center gap-4 flex-wrap">
-            <Link to="/exam">
+            <Link to="/quiz">
               <button className="bg-pink-600 text-white px-6 py-3 rounded-xl hover:bg-pink-700 transition duration-300">
-                View All PDFs
+                Quiz
               </button>
             </Link>
             <Link to="/about">

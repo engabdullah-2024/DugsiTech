@@ -38,6 +38,8 @@ const users = [
   { name: 'Adam Cabdullahi', email: 'adanapdalle61@gmail.com', password: 'adam61', role: 'Student', school: 'Alfurqan School Ceelasha', grade: '12' },
   { name: 'Ayuop Ahmed', email: 'buuyajeenyo@gmail.com', password: 'ayub8', role: 'Student', school: 'Alfurqan School Ceelasha', grade: '12' },
   { name: 'Anas C/risaaq Maxamed', email: 'khaamraaj64@gmail.com', password: 'khamraj64', role: 'Student', school: 'Alfurqan School Ceelasha', grade: '12' },
+  { name: 'Bishaaro Jaamac Cabdule ', email: 'saafifaaid@gmail.com', password: 'bisharo', role: 'Student', school: 'Alfurqan School Ceelasha', grade: '12' },
+  { name: 'Hanan Ciise Jimcaale ', email: 'hanaaniise557@gmail.com', password: 'hanan557', role: 'Student', school: 'Alfurqan School Ceelasha', grade: '12' },
 ];
 
 const Login = () => {
