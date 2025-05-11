@@ -3,7 +3,7 @@ import Hero from "./Hero";
 // import { useTheme } from "../components/ThemeContext ";
 import Service from "../components/Service";
 import OurServices from "../components/OurServices";
-import Plans from "./Plans";
+
 import Schools from "./Schools";
 
 function Home() {
@@ -13,7 +13,7 @@ function Home() {
     
     >
      <Hero/>
-     <Plans/>
+     
      <OurServices/>
      <Service/>
      <Schools/>
