@@ -13,12 +13,12 @@ const Hero = () => {
             Welcome to <span className="text-pink-600">Dugsi Hub</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-700 mb-8">
-          Empowering Grade 12 Students with Premium Exam Resources – Access PDFs and Study Materials Effortlessly.
+          Empowering Grade 12 Students with Free Exam Resources – Access PDFs and Study Materials Effortlessly.
           </p>
           <div className="flex justify-center gap-4 flex-wrap">
-            <Link to="/quiz">
+            <Link to="/exam">
               <button className="bg-pink-600 text-white px-6 py-3 rounded-xl hover:bg-pink-700 transition duration-300">
-                Quiz
+                View All Exams
               </button>
             </Link>
             <Link to="/about">

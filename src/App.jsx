@@ -23,6 +23,7 @@ import Dashboard from './components/Dashboard';
 import Quiz from './pages/Quiz';
 import Answers from './pages/Answers';
 import ScrollButtons from './pages/ScrollButtons ';
+import Exam from './pages/Exam';
 
 // ✅ Protected Route Logic
 const ProtectedRoute = ({ children }) => {
@@ -183,6 +184,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/exam"
+          element={
+            <ProtectedRoute>
+              <Exam />
             </ProtectedRoute>
           }
         />
